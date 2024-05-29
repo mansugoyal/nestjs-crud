@@ -9,13 +9,19 @@ export class TodosService {
     constructor(
         @InjectRepository(Todo)
         private todoRepository: Repository<TodoInterface>,
-    ) { } create(todo: TodoInterface): Promise<TodoInterface> {
+    ) { } 
+    
+    create(todo: TodoInterface): Promise<TodoInterface> {
         return this.todoRepository.save(
             this.todoRepository.create(todo)
         );
-    } findAll(): Promise<TodoInterface[]> {
+    } 
+    
+    findAll(): Promise<TodoInterface[]> {
         return this.todoRepository.find();
-    } update(id: string, data: any): Promise<any> {
+    } 
+    
+    update(id: string, data: any): Promise<any> {
         return this.todoRepository
             .createQueryBuilder()
             .update()
@@ -24,7 +30,9 @@ export class TodosService {
             })
             .where('id = :id', { id })
             .execute()
-    } delete(id: string): Promise<any> {
+    } 
+    
+    delete(id: string): Promise<any> {
         return this.todoRepository
             .createQueryBuilder()
             .delete()
